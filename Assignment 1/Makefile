@@ -1,16 +1,32 @@
 CXX = g++
-	CXXFLAGS = -I/opt/homebrew/include -std=c++17
+CXXFLAGS = -I/opt/homebrew/include -std=c++17
 LDFLAGS= -L/opt/homebrew/lib -lsfml-graphics -lsfml-window -lsfml-system
+
+
 
 TARGET = hermites_cube
 
-all:
-	$(CXX) main.cpp -o $(TARGET) $(CXXFLAGS) $(LDFLAGS)
+SOURCES = $(wildcard *.cpp)
 
-run:
+OBJECTS = $(SOURCES:.cpp=.o)
+
+
+all: $(TARGET)
+
+
+$(TARGET): $(OBJECTS)
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+
+run: all
 	./$(TARGET)
 
+
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(OBJECTS)
 
-
+.PHONY: all run clean
