@@ -17,4 +17,6 @@ private:
 
     void setLOD(int lod);
     int getLOD() const;
-};
+
+    void draw(sf::RenderWindow& window) const;
+    void update(sf::Vector2f R0, sf::Vector2f R1, sf::Vector2f r0, sf::Vector2f r1); };
