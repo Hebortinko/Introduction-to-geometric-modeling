@@ -32,10 +32,10 @@ void HermiteCube::update(sf::Vector2f R0, sf::Vector2f R1, sf::Vector2f r0, sf::
   
   float step = 1.0f / static_cast<float>(custom_lod - 1);
   for (int i = 0; i < custom_lod; i++){
-    float t = i * step
+    float t = i * step;
     auto h = calculateBasis(t);
 
-    sf::Vector2f point = (h[0] * R0) + (h[3] * R1) + (h[1] * r0) + (h[2] r1);
+    sf::Vector2f point = (h[0] * R0) + (h[3] * R1) + (h[1] * r0) + (h[2] * r1);
 
     m_curvePoints.emplace_back(point);
   }
