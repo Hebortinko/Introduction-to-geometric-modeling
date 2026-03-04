@@ -4,7 +4,7 @@
 #include <array>
 
 class HermiteCube {
-  static const int DEFAULT_LOD = 42;
+  static const int DEFAULT_LOD = 140;
   int custom_lod;
   std::vector<sf::Vector2f> m_curvePoints;
   
@@ -16,6 +16,9 @@ private:
     HermiteCube();
 
     void setLOD(int lod);
+    void setCurvePoints(std::vector<sf::Vector2f> points);
+
+
     int getLOD() const;
 
     void draw(sf::RenderWindow& window);

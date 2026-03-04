@@ -13,6 +13,10 @@ void HermiteCube::setLOD(int lod){
   }
 }
 
+void HermiteCube::setCurvePoints(std::vector<sf::Vector2f> points) {
+  this->m_curvePoints = points;
+}
+
 int HermiteCube::getLOD() const {
   return custom_lod;
 }
