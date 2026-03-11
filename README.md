@@ -18,6 +18,6 @@ The main goal of this project is to store my university assignments and track my
 Each assignment is contained within its own directory with a dedicated `Makefile`:
 
 - `Assignment 1/`: [Hermite's cube](https://github.com/Hebortinko/Introduction-to-geometric-modeling/tree/main/Assignment%201)
-- `Assignment 2/`: ...
+- `Assignment 2/`: ... 
 
 *By the end of the semester, my ambition is to refactor these individual assignments and combime them into a **small modular "engine"** for comples shape creation and real-time manipulation*
