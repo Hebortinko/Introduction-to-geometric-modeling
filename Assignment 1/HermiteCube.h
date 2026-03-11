@@ -3,23 +3,23 @@
 #include <vector>
 #include <array>
 
-class HermiteCube {
-  static const int DEFAULT_LOD = 140;
+class HermiteCube
+{
+  static const int DEFAULT_LOD = 42;
   int custom_lod;
   std::vector<sf::Vector2f> m_curvePoints;
-  
 
 private:
-  std::array<float, 4>calculateBasis(float t) const;
+  std::array<float, 4> calculateBasis(float t) const;
 
-  public:
-    HermiteCube();
+public:
+  HermiteCube();
 
-    void setLOD(int lod);
-    void setCurvePoints(std::vector<sf::Vector2f> points);
+  void setLOD(int lod);
+  void setCurvePoints(std::vector<sf::Vector2f> points);
 
+  int getLOD() const;
 
-    int getLOD() const;
-
-    void draw(sf::RenderWindow& window);
-    void update(sf::Vector2f R0, sf::Vector2f R1, sf::Vector2f r0, sf::Vector2f r1); };
+  void draw(sf::RenderWindow &window);
+  void update(sf::Vector2f R0, sf::Vector2f R1, sf::Vector2f r0, sf::Vector2f r1);
+};

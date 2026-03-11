@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -I/opt/homebrew/include -std=c++17
+CXXFLAGS = -I/opt/homebrew/include -I../SimpleUI -std=c++20
 LDFLAGS= -L/opt/homebrew/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 
