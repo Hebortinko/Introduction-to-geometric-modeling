@@ -59,7 +59,7 @@ Once placed, any control point can be **dragged interactively**:
 The **Level of Detail** controls how many sample points are used to draw the curve:
 
 - `+` button – increase LOD by 10
-- `-` button – decrease LOD by 10 (minimum: 3)
+- `-` button – decrease LOD by 10 (minimum: 42)
 - Current LOD value is displayed next to the buttons
 
 At low LOD values the curve appears angular. At higher values it becomes smooth.
