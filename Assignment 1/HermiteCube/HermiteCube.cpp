@@ -27,6 +27,11 @@ int HermiteCube::getLOD() const
   return custom_lod;
 }
 
+int HermiteCube::getDefaultLOD() const
+{
+  return DEFAULT_LOD;
+}
+
 std::array<float, 4> HermiteCube::calculateBasis(float t) const
 {
   float t_2 = t * t;

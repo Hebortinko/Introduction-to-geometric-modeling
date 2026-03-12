@@ -6,7 +6,10 @@ LDFLAGS= -L/opt/homebrew/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 TARGET = hermites_cube
 
-SOURCES = $(wildcard *.cpp)
+SOURCES = $(wildcard *.cpp) \
+          $(wildcard App/*.cpp) \
+          $(wildcard HermiteCube/*.cpp) \
+          $(wildcard UI/*.cpp)
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
