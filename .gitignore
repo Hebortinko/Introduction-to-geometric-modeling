@@ -3,7 +3,6 @@ hermites_cube
 UGM-PU1.pdf
 
 sfml-app
-app
 *.out
 *.exe
 
