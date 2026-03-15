@@ -123,15 +123,7 @@ SimpleUI is located in `../SimpleUI/` and is shared across assignments.
 
 ## Build & Run
 
-**Requirements:**
-- SFML 3.0
-- C++20
-- macOS (uses system Helvetica font)
-
-```bash
-make        # build
-make run    # build and run
-make clean  # remove build files
+See the [root README](../README.md) for build instructions.
 ```
 
 ---

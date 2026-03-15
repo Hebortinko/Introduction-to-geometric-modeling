@@ -2,10 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <array>
+#include <cmath>
 
 class HermiteCube
 {
-  static const int DEFAULT_LOD = 2;
+  static const int DEFAULT_LOD = 42;
   int custom_lod;
   std::vector<sf::Vector2f> m_curvePoints;
 

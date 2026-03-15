@@ -1,4 +1,4 @@
-#include "App.h"
+ #include "App.h"
 #include <iostream>
 #include <algorithm>
 
@@ -7,7 +7,7 @@ App::App()
       state(0)
 {
 
-  m_font.openFromFile("/System/Library/Fonts/Helvetica.ttc");
+  m_font.openFromFile("assets/Inter/static/Inter_18pt-Regular.ttf");
   Theme::get().font = &m_font;
 
   m_ui = new UILayer();

@@ -13,6 +13,26 @@ The main goal of this project is to store my university assignments and track my
 - **Custom Library based on SFML:** [SimpleUI](https://github.com/Hebortinko/SimpleUI)
 - **Build System:** Makefiles (Optimized for macOS / Apple Silicon)
 
+## Build & Run
+
+### macOS
+Each assignment has its own `Makefile`. From inside an assignment directory:
+```bash
+make        # build
+make run    # build and run
+make clean  # remove build files
+```
+Requires SFML 3.0 installed via Homebrew: `brew install sfml`
+
+### Windows (cross-compile from macOS)
+1. Download **SFML 3 — GCC MinGW 64-bit** from [sfml-dev.org](https://www.sfml-dev.org/download)
+2. Extract to `../SFML-win/` (next to assignment folders)
+3. Install MinGW: `brew install mingw-w64`
+4. From inside an assignment directory:
+```bash
+make -f Makefile.win SFML_DIR=../SFML-win
+```
+
 ## Repository Structure
 
 Each assignment is contained within its own directory with a dedicated `Makefile`:

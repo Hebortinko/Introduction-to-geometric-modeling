@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "../HermiteCube/HermiteCube.h"
 #include "../UI/UILayer.h"
+#include <cmath>
 
 class App
 {

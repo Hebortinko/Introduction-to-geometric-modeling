@@ -5,7 +5,7 @@ UGM-PU1.pdf
 sfml-app
 *.out
 *.exe
-
+*.zip
 
 *.o
 *.obj
@@ -17,3 +17,4 @@ sfml-app
 .vscode/
 .idea/
 *.swp
+SFML-win/
