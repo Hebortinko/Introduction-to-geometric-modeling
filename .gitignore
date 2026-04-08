@@ -1,11 +1,12 @@
 #binaries
 hermites_cube
-UGM-PU1.pdf
+bezier_cube
 
 sfml-app
 *.out
 *.exe
 *.zip
+*.pdf
 
 *.o
 *.obj

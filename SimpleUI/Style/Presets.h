@@ -1,5 +1,5 @@
 #pragma once
-#include "WidgetStyle.h"
+#include "SimpleUI/Style/WidgetStyle.h"
 #include <SFML/Graphics.hpp>
 
 namespace Presets {
