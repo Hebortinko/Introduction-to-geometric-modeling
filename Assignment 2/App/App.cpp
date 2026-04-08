@@ -6,8 +6,7 @@ App::App()
     : m_window(sf::VideoMode({800, 800}), "Bezier Cube editor"),
       state(0)
 {
-  if (!m_font.openFromFile("/System/Library/Fonts/Helvetica.ttc"))
-    return;
+  m_font.openFromFile("assets/Inter/static/Inter_18pt-Regular.ttf");
 
   Theme::get().font = &m_font;
 
