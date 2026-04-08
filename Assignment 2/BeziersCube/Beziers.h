@@ -35,13 +35,14 @@ public:
 
     void setToDefaults();
 
+    void setDraggedPointIndex(int index);
+    int getDraggedPointIndex() const; 
+
+    float getPickedRadius() const;
+
+    std::vector<std::vector<sf::Vector2f>> deCasteljauLevels(float param) const;
+    sf::Vector2f lerp(const sf::Vector2f& A, const sf::Vector2f& B, float t) const ;
     sf::Vector2f evaluate(float param) const;
     std::vector<sf::Vector2f> sampleCurve() const;
-    std::vector<std::vector<sf::Vector2f>> deCasteljauLevels(float param) const;
-
-    int findPoint(const sf::Vector2f& mousePos) const;
-    void startDragging(int index);
-    void dragPoint(const sf::Vector2f& mousePos);
-    void stopDragging();
 };
 

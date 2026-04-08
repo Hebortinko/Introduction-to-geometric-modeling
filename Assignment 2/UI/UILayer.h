@@ -21,8 +21,9 @@ public:
     void update(float dt);
     void draw(sf::RenderWindow &window);
     void setLodText(int lod);
-    bool isInUIZone(sf::Vector2f pos, float windowWidth);
+    bool isInUIZone(sf::Vector2f pos, float windowWidth, float windowHeight);
     void setSliderValue(float newVal);
+    float getSliderValue() const;
     
 
 private:

@@ -92,12 +92,15 @@ void UILayer::setLodText(int lod)
     m_lodText->setString("LOD: " + std::to_string(lod));
 }
 
-bool UILayer::isInUIZone(sf::Vector2f pos, float windowWidth)
+bool UILayer::isInUIZone(sf::Vector2f pos, float windowWidth, float windowHeight)
 {
-    return pos.x > windowWidth - 260.f && pos.y < 60.f;
+    return (pos.x > windowWidth - 260.f && pos.y < 60.f) || (pos.y > windowHeight - 90.f);
 }
 
 void UILayer::setSliderValue(float newVal){
     slider.setValue(newVal);
 }
 
+float UILayer::getSliderValue() const {
+    return slider.getValue();
+}

@@ -32,5 +32,4 @@ public:
   void run();
   void handleInput(const sf::Event &event);
   bool isMouseOver(sf::Vector2f mousePos, sf::Vector2f pointPos, float radius = 10.0f);
-  void onMouseClick(sf::Vector2f pos);
 };

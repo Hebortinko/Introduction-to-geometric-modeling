@@ -91,7 +91,7 @@ void App::handleInput(const sf::Event &event)
 {
   if (const auto *mouseBtn = event.getIf<sf::Event::MouseButtonPressed>())
   {
-    if (mouseBtn->button == sf::Mouse::Button::Left)
+    if (mouseBtn->button == sf::Mouse::	Button::Left)
     {
       sf::Vector2f mousePos = sf::Vector2f(mouseBtn->position.x, mouseBtn->position.y);
       if (state >= 1 && isMouseOver(mousePos, R0))

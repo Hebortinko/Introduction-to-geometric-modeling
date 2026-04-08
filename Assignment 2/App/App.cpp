@@ -84,62 +84,106 @@ void App::render()
 
 void App::handleInput(const sf::Event &event)
 {
-  if (const auto *mouseBtn = event.getIf<sf::Event::MouseButtonPressed>())
-  {
-    if (mouseBtn->button == sf::Mouse::Button::Left)
-    {
-      sf::Vector2f mousePos = sf::Vector2f(mouseBtn->position.x, mouseBtn->position.y);
-      bezier.addPoint(mousePos);
+  if (const auto *mouseBtn = event.getIf<sf::Event::MouseButtonPressed>()){
 
+    if (mouseBtn->button == sf::Mouse::Button::Left ){
+        sf::Vector2f mousePos = sf::Vector2f(mouseBtn->position.x, mouseBtn->position.y);
+
+      if (!m_ui->isInUIZone(mousePos, m_window.getSize().x, m_window.getSize().y)){
+            bezier.addPoint(mousePos);
+      }
+    
+    }
+
+    if (mouseBtn->button == sf::Mouse::Button::Right){
+        sf::Vector2f mousePos = sf::Vector2f(mouseBtn->position.x, mouseBtn->position.y);
+
+        auto& points = bezier.getPoints();
+        int index;
+        for (int i = 0; i < points.size(); ++i) {
+            if (isMouseOver(mousePos, points[i], bezier.getPickedRadius())) {
+                bezier.setDraggedPointIndex(i);
+                break; 
+            }
+        }
+    }
+    
+  }
+
+  if (const auto *mouseMov = event.getIf<sf::Event::MouseMoved>()){
+    int idx = bezier.getDraggedPointIndex();
+    if (idx != -1) {
+        sf::Vector2f mousePos(mouseMov->position.x, mouseMov->position.y);
+        bezier.setPoint(idx, mousePos); 
     }
   }
 
-  if (const auto *mouseMov = event.getIf<sf::Event::MouseMoved>())
-  {
-    if (m_isDragging && m_draggedPoint)
-      *m_draggedPoint = sf::Vector2f(mouseMov->position.x, mouseMov->position.y);
-  }
-
-  if (const auto *mouseBtn = event.getIf<sf::Event::MouseButtonReleased>())
-  {
-    if (mouseBtn->button == sf::Mouse::Button::Left)
-    {
-      m_isDragging = false;
-      m_draggedPoint = nullptr;
+  if (const auto *mouseRel = event.getIf<sf::Event::MouseButtonReleased>()) {
+        if (mouseRel->button == sf::Mouse::Button::Right) {
+            bezier.setDraggedPointIndex(-1);
+        }
     }
-  }
 }
 
 void App::drawScene()
 {
-  const float R = 10.f;
-  std::vector<sf::Vector2f> points = bezier.getPoints();
-  
-  /*
-  
-  
-  auto drawCircle = [&](sf::Vector2f pos, float radius, sf::Color color)
-  {
-    sf::CircleShape circle(radius, 64);
-    circle.setFillColor(color);
-    circle.setOrigin({radius, radius});
-    circle.setPosition(pos);
-    m_window.draw(circle);
-  };
+    auto& points = bezier.getPoints();
+    if (points.empty()) return;
 
-    drawCircle(r0, handleR, sf::Color(220, 80, 80));
-    */
+    
+    sf::VertexArray lines(sf::PrimitiveType::LineStrip, points.size());
+    for (size_t i = 0; i < points.size(); ++i) {
+        lines[i].position = points[i];
+        lines[i].color = sf::Color(100, 100, 100, 150); 
+    }
+    m_window.draw(lines);
 
-   for(auto & element : points){
-        sf::CircleShape circle(R, 64);
-        circle.setFillColor(sf::Color(220, 80, 80));
-        circle.setOrigin({R, R});
-        circle.setPosition(element);
+    std::vector<sf::Vector2f> curvePoints = bezier.sampleCurve();
+    if (curvePoints.size() >= 2) {
+        sf::VertexArray curveLine(sf::PrimitiveType::LineStrip, curvePoints.size());
+        for (size_t i = 0; i < curvePoints.size(); ++i) {
+            curveLine[i].position = curvePoints[i];
+            curveLine[i].color = sf::Color::Black; 
+        }
+        m_window.draw(curveLine);
+    }
+
+    auto levels = bezier.deCasteljauLevels(m_ui->getSliderValue()); 
+    for (size_t l = 1; l < levels.size(); ++l) {
+        sf::VertexArray levelLine(sf::PrimitiveType::LineStrip, levels[l].size());
+        for (size_t i = 0; i < levels[l].size(); ++i) {
+            levelLine[i].position = levels[l][i];
+            levelLine[i].color = sf::Color(0, 255, 0, 100); 
+        }
+        m_window.draw(levelLine);
+    
+    }
+
+    if (!levels.empty() && !levels.back().empty()) {
+        sf::CircleShape pointOnCurve(5.f);
+        pointOnCurve.setFillColor(sf::Color::Yellow);
+        pointOnCurve.setOrigin({5.f, 5.f});
+        pointOnCurve.setPosition(levels.back()[0]); 
+        m_window.draw(pointOnCurve);
+    }
+    
+    sf::CircleShape circle(8.f, 64);
+    circle.setOrigin({8.f, 8.f});
+
+    for (size_t i = 0; i < points.size(); ++i) {
+        if (i == 0 || i == points.size() - 1) {
+            circle.setFillColor(sf::Color::Blue); 
+            circle.setRadius(10.f); 
+        } else {
+            circle.setFillColor(sf::Color(220, 80, 80)); 
+            circle.setRadius(7.f);
+        }
+        circle.setPosition(points[i]);
         m_window.draw(circle);
-   }
-   
-}
+    }
 
+
+}
 
 bool App::isMouseOver(sf::Vector2f mousePos, sf::Vector2f pointPos, float radius)
 {
@@ -147,13 +191,3 @@ bool App::isMouseOver(sf::Vector2f mousePos, sf::Vector2f pointPos, float radius
   return (diff.x * diff.x + diff.y * diff.y) < (radius * radius);
 }
 
-void App::onMouseClick(sf::Vector2f pos)
-{
-  switch (state)
-  {
-  case 0: R0 = pos; state = 1; break;
-  case 1: R1 = pos; state = 2; break;
-  case 2: r0 = pos; state = 3; break;
-  case 3: r1 = pos; state = 4; break;
-  }
-}   
