@@ -1,21 +1,26 @@
-#binaries
-hermites_cube
-bezier_cube
-
-sfml-app
-*.out
-*.exe
-*.zip
-*.pdf
-
+# Build outputs
 *.o
 *.obj
+*.win.o
+*.out
+*.exe
 
+Assignment 1/hermites_cube
+Assignment 2/bezier_cube
+Assignment 3/hermite_spline
+
+# Packaging
+*.zip
+DU3 Samuel Hebort/
+
+# Local tooling and logs
+nvim.log
+*.swp
+.vscode/
+.idea/
+SFML-win/
+
+# macOS metadata
 .DS_Store
 .AppleDouble
 .LSOverride
-
-.vscode/
-.idea/
-*.swp
-SFML-win/

@@ -1,0 +1,10 @@
+-xc++
+-std=c++20
+-I.
+-I./App
+-I./HermiteSpline
+-I./Math
+-I./UI
+-I../
+-I/opt/homebrew/include
+-I./external/eigen

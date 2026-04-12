@@ -1,0 +1,32 @@
+CXX      = x86_64-w64-mingw32-g++
+CXXFLAGS = -I$(SFML_DIR)/include -I../ -Iexternal/eigen -std=c++20 -DSFML_STATIC
+
+LDFLAGS  = -L$(SFML_DIR)/lib \
+           -lsfml-graphics-s -lsfml-window-s -lsfml-system-s \
+           -lopengl32 -lwinmm -lgdi32 -lfreetype \
+           -static \
+           -lpthread \
+           -mwindows
+
+TARGET  = hermite_spline.exe
+
+SOURCES = $(wildcard *.cpp) \
+          $(wildcard App/*.cpp) \
+          $(wildcard HermiteSpline/*.cpp) \
+          $(wildcard Math/*.cpp) \
+          $(wildcard UI/*.cpp)
+
+OBJECTS = $(SOURCES:.cpp=.win.o)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
+%.win.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(TARGET) $(OBJECTS)
+
+.PHONY: all clean
