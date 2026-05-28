@@ -25,3 +25,8 @@ SFML-win/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+*.typ
+*.jpg
+*.png
+target/

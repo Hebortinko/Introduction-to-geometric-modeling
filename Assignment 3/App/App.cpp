@@ -2,18 +2,18 @@
 
 #include <array>
 #include <cmath>
-#include <string>
 #include <stdexcept>
+#include <string>
 
 namespace {
 constexpr float DERIVATIVE_VECTOR_DISPLAY_LENGTH = 42.f;
 
 sf::Color getSegmentColor(std::size_t index) {
   static constexpr std::array<sf::Color, 8> palette = {
-      sf::Color(239, 83, 80),  sf::Color(66, 165, 245),
+      sf::Color(239, 83, 80),   sf::Color(66, 165, 245),
       sf::Color(102, 187, 106), sf::Color(255, 202, 40),
-      sf::Color(171, 71, 188), sf::Color(255, 112, 67),
-      sf::Color(38, 198, 218), sf::Color(141, 110, 99)};
+      sf::Color(171, 71, 188),  sf::Color(255, 112, 67),
+      sf::Color(38, 198, 218),  sf::Color(141, 110, 99)};
 
   return palette[index % palette.size()];
 }
@@ -79,9 +79,7 @@ App::App() : m_window(sf::VideoMode({800, 800}), "Hermite spline editor") {
   m_ui->setLodText(m_spline.getLOD());
 }
 
-App::~App() {
-  delete m_ui;
-}
+App::~App() { delete m_ui; }
 
 void App::increaseLod() {
   m_spline.setLOD(m_spline.getLOD() + 1);
@@ -109,10 +107,9 @@ void App::run() {
       }
 
       if (event->is<sf::Event::Resized>()) {
-        const sf::FloatRect view(
-            {0.f, 0.f},
-            {static_cast<float>(m_window.getSize().x),
-             static_cast<float>(m_window.getSize().y)});
+        const sf::FloatRect view({0.f, 0.f},
+                                 {static_cast<float>(m_window.getSize().x),
+                                  static_cast<float>(m_window.getSize().y)});
         m_window.setView(sf::View(view));
       }
 
@@ -221,8 +218,7 @@ void App::drawScene() {
 
     circle.setRadius(radius);
     circle.setOrigin({radius, radius});
-    circle.setFillColor(isEndpoint ? sf::Color::Blue
-                                   : sf::Color(220, 80, 80));
+    circle.setFillColor(isEndpoint ? sf::Color::Blue : sf::Color(220, 80, 80));
     circle.setPosition(points[i]);
     m_window.draw(circle);
 

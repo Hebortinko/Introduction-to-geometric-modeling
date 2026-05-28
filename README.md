@@ -1,43 +1,78 @@
 # Introduction to Geometric Modeling
 
-Welcome to my repository dedicated to the world of computer graphics.
+Repository for my university assignments in geometric modeling and interactive computer graphics.
 
 ## Purpose
 
-The main goal of this project is to store my university assignments and track my personal progress in **Computer Graphics**. I hope this repo can serve as a learning resource or inspiration for fellow students and developers interested in how curves and shapes are built from scratch.
+The goal of this project is to keep all semester assignments in one place, document how each editor works, and track the gradual evolution from standalone coursework into a more reusable graphics codebase.
 
 ## Tech Stack
 
-- **Language:** C++ (Standard 17/20)
-- **Graphics Library:** [SFML 3.0](https://www.sfml-dev.org/documentation/3.0.2/)
-- **Custom Library based on SFML:** [SimpleUI](https://github.com/Hebortinko/SimpleUI)
-- **Build System:** Makefiles (Optimized for macOS / Apple Silicon)
+- **Assignments 1-3:** C++17/20, [SFML 3.0](https://www.sfml-dev.org/documentation/3.0.2/), and my custom UI library [SimpleUI](https://github.com/Hebortinko/SimpleUI)
+- **Assignments 4-5:** Rust 2024 with `egui` and `eframe`
+- **Build Systems:** `make` for the C++ projects and Cargo for the Rust projects
+- **Platform Focus:** macOS / Apple Silicon, with some Windows cross-build support
+
+## Why Rust for Assignments 4 and 5?
+
+Assignments 4 and 5 are intentionally written in Rust because I want to learn the language, it feels like a more modern direction, and it was a good challenge after spending a lot of time building custom widgets in earlier assignments.
+
+My longer-term plan is to revisit the older assignments in Rust as well, improve the visuals, make the code more modular, and gradually shape the repository into a small CAD-like engine for geometric modeling.
 
 ## Build & Run
 
-### macOS
-Each assignment has its own `Makefile`. From inside an assignment directory:
-```bash
-make        # build
-make run    # build and run
-make clean  # remove build files
-```
-Requires SFML 3.0 installed via Homebrew: `brew install sfml`
+### Assignments 1-3 (C++ / SFML)
 
-### Windows (cross-compile from macOS)
-1. Download **SFML 3 — GCC MinGW 64-bit** from [sfml-dev.org](https://www.sfml-dev.org/download)
-2. Extract to `../SFML-win/` (next to assignment folders)
+From inside an assignment directory:
+
+```bash
+make
+make run
+make clean
+```
+
+Requires SFML 3.0 installed via Homebrew:
+
+```bash
+brew install sfml
+```
+
+### Windows Cross-Compile for Assignments 1-3
+
+1. Download **SFML 3 - GCC MinGW 64-bit** from [sfml-dev.org](https://www.sfml-dev.org/download)
+2. Extract it to `../SFML-win/` next to the assignment folders
 3. Install MinGW: `brew install mingw-w64`
-4. From inside an assignment directory:
+4. Run from inside the selected assignment directory:
+
 ```bash
 make -f Makefile.win SFML_DIR=../SFML-win
 ```
 
+### Assignment 4 (Rust / egui)
+
+Run from inside `Assignment 4/`:
+
+```bash
+cargo run
+```
+
+### Assignment 5 (Rust / egui)
+
+Run from inside `Assignment 5/B-splajn/`:
+
+```bash
+cargo run
+```
+
 ## Repository Structure
 
-Each assignment is contained within its own directory with a dedicated `Makefile`:
+- `Assignment 1/`: [Hermite Cubic Curve Editor](./Assignment%201/README.md)
+- `Assignment 2/`: [Bezier Curve Editor](./Assignment%202/README.md)
+- `Assignment 3/`: [Hermite Spline Editor](./Assignment%203/README.md)
+- `Assignment 4/`: [Cardinal Spline Editor](./Assignment%204/README.md)
+- `Assignment 5/`: [B-Spline Editor](./Assignment%205/README.md)
+- `SimpleUI/`: shared header-only UI library used by the C++ assignments
 
-- `Assignment 1/`: [Hermite's cube](https://github.com/Hebortinko/Introduction-to-geometric-modeling/tree/main/Assignment%201)
-- `Assignment 2/`: ... 
+## Long-Term Direction
 
-*By the end of the semester, my ambition is to refactor these individual assignments and combime them into a **small modular "engine"** for comples shape creation and real-time manipulation*
+By the end of the semester, I want to refactor these individual assignments into a smaller modular system for interactive curve and shape creation, with the long-term goal of growing it into a compact CAD-like engine.
